@@ -9,7 +9,7 @@
     "export": "next export",
     "start": "next start",
     "create:issue": "node scripts/create_test_issue.js --title \"Pothole near library\" --description \"Large pothole close to entrance (test)\" --category pothole"
-  ,
+  },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@react-google-maps/api": "^2.20.0",

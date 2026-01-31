@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import MapPicker from '../components/MapPicker'
+import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+const MapPicker = dynamic(() => import('../components/MapPicker'), { ssr: false })
 import { auth, db, storage } from '../lib/firebaseClient'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
@@ -12,7 +13,10 @@ export default function Report() {
   const [location, setLocation] = useState(null)
   const [msg, setMsg] = useState('')
 
-  onAuthStateChanged(auth, (u) => setUser(u))
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => setUser(u))
+    return unsub
+  }, [])
 
   async function handleSubmit(e) {
     e.preventDefault(); setMsg('')
