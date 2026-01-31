@@ -22,3 +22,19 @@ Example:
 2. `npm run create:issue`
 
 The script will print the created document ID on success.
+
+---
+
+## Deploying to Netlify — environment vars you must set ⚠️
+
+Before building on Netlify, add these environment variables to your Site settings → Build & deploy → Environment:
+
+- NEXT_PUBLIC_FIREBASE_API_KEY
+- NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+- NEXT_PUBLIC_FIREBASE_PROJECT_ID
+- NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+- NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+- NEXT_PUBLIC_FIREBASE_APP_ID
+- NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+
+If these are not set, the build may fail (the Firebase client can throw auth/invalid-api-key during SSR). Setting these in Netlify (rather than committing a .env file) is recommended for security.
